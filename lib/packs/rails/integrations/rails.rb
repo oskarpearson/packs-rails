@@ -12,11 +12,15 @@ module Packs
 
           Packs::Rails.config.paths.freeze
 
+          puts "COUNT OF PACKS to inject_paths to #{Packs.count}"
+
           create_engines
           inject_paths
         end
 
         def create_engines
+          puts "COUNT OF engines to inject_paths to #{Packs.all.reject(&:is_gem?)}"
+
           Packs.all.reject(&:is_gem?).each do |pack|
             next unless pack.metadata['engine']
 
@@ -25,6 +29,8 @@ module Packs
         end
 
         def inject_paths
+          puts "COUNT OF PACKS to inject_paths to #{Packs.count}"
+
           Packs.all.reject(&:is_gem?).each do |pack|
             puts "Packs::Rails::Integrations::Rails adding paths for #{pack.name}"
             Packs::Rails.config.paths.each do |path|
