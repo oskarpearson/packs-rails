@@ -4,6 +4,7 @@ module Packs
   module Rails
     class Railtie < ::Rails::Railtie
       config.before_configuration do |app|
+        puts "PACKS::RAILS::Railtie before_configuration executing"
         Integrations::Rails.new(app)
         Integrations::FactoryBot.new(app)
 

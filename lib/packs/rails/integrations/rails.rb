@@ -26,6 +26,7 @@ module Packs
 
         def inject_paths
           Packs.all.reject(&:is_gem?).each do |pack|
+            puts "Packs::Rails::Integrations::Rails adding paths for #{pack.name}"
             Packs::Rails.config.paths.each do |path|
               @app.paths[path] << pack.relative_path.join(path)
             end
